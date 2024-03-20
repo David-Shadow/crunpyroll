@@ -8,6 +8,7 @@ class GetSeasons:
         series_id: str,
         *,
         locale: str = None,
+        preferred_audio_language: str = 'ja-JP'
     ) -> "types.SeasonsQuery":
         """
         Get list of seasons from a series.
@@ -28,7 +29,8 @@ class GetSeasons:
             method="GET",
             endpoint="content/v2/cms/series/" + series_id + "/seasons",
             params={
-                "locale": locale or self.locale
+                "locale": locale or self.locale,
+                'preferred_audio_language': preferred_audio_language,
             }
         )
         return types.SeasonsQuery.parse(response)
